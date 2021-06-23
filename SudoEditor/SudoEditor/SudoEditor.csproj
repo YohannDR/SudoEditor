@@ -46,30 +46,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ajout.cs">
+    <Compile Include="Forms\FrmAjout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Ajout.Designer.cs">
-      <DependentUpon>Ajout.cs</DependentUpon>
+    <Compile Include="Forms\FrmAjout.Designer.cs">
+      <DependentUpon>FrmAjout.cs</DependentUpon>
     </Compile>
     <Compile Include="Area.cs" />
-    <Compile Include="Editor.cs">
+    <Compile Include="Forms\Editor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Editor.Designer.cs">
+    <Compile Include="Forms\Editor.Designer.cs">
       <DependentUpon>Editor.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmHeader.cs">
+    <Compile Include="Forms\FrmHeader.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmHeader.Designer.cs">
+    <Compile Include="Forms\FrmHeader.Designer.cs">
       <DependentUpon>FrmHeader.cs</DependentUpon>
     </Compile>
     <Compile Include="Header.cs" />
-    <Compile Include="ImageView.cs">
+    <Compile Include="Forms\ImageView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ImageView.Designer.cs">
+    <Compile Include="Forms\ImageView.Designer.cs">
       <DependentUpon>ImageView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -80,25 +80,25 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="Suppression.cs">
+    <Compile Include="Forms\Suppression.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Suppression.Designer.cs">
+    <Compile Include="Forms\Suppression.Designer.cs">
       <DependentUpon>Suppression.cs</DependentUpon>
     </Compile>
     <Compile Include="TileViewer.cs">
       <SubType>Component</SubType>
     </Compile>
-    <EmbeddedResource Include="Ajout.resx">
-      <DependentUpon>Ajout.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmAjout.resx">
+      <DependentUpon>FrmAjout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editor.resx">
+    <EmbeddedResource Include="Forms\Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmHeader.resx">
+    <EmbeddedResource Include="Forms\FrmHeader.resx">
       <DependentUpon>FrmHeader.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImageView.resx">
+    <EmbeddedResource Include="Forms\ImageView.resx">
       <DependentUpon>ImageView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -110,7 +110,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Suppression.resx">
+    <EmbeddedResource Include="Forms\Suppression.resx">
       <DependentUpon>Suppression.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".editorconfig" />

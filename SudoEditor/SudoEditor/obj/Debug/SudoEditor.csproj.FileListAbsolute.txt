@@ -1,7 +1,6 @@
 H:\SudoEngine\SudoEditor\SudoEditor\bin\Debug\SudoEditor.exe.config
 H:\SudoEngine\SudoEditor\SudoEditor\bin\Debug\SudoEditor.exe
 H:\SudoEngine\SudoEditor\SudoEditor\bin\Debug\SudoEditor.pdb
-H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.csprojAssemblyReference.cache
 H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.SudoEditor.resources
 H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.Properties.Resources.resources
 H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.csproj.GenerateResource.cache
@@ -26,3 +25,4 @@ H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.ImageView.resources
 H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.Suppression.resources
 H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.FrmHeader.resources
 E:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.FrmHeader.resources
+H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.csproj.AssemblyReference.cache
