@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DiscordRPC, Version=1.0.175.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscordRichPresence.1.0.175\lib\net35\DiscordRPC.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -80,11 +86,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="Forms\Suppression.cs">
+    <Compile Include="Forms\FrmSuppression.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Suppression.Designer.cs">
-      <DependentUpon>Suppression.cs</DependentUpon>
+    <Compile Include="Forms\FrmSuppression.Designer.cs">
+      <DependentUpon>FrmSuppression.cs</DependentUpon>
     </Compile>
     <Compile Include="TileViewer.cs">
       <SubType>Component</SubType>
@@ -110,10 +116,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\Suppression.resx">
-      <DependentUpon>Suppression.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmSuppression.resx">
+      <DependentUpon>FrmSuppression.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".editorconfig" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

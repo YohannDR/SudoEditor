@@ -6,6 +6,8 @@ namespace SudoEditor
 {
     public partial class ImageView : Form
     {
+        public static Image Image;
+
         public ImageView()
         {
             InitializeComponent();
@@ -13,14 +15,14 @@ namespace SudoEditor
 
         private void ImageView_Load(object sender, EventArgs e)
         {
-            Size = new Size(Suppression.image.Width + 60, Suppression.image.Height + 95);
-            Text = Suppression.image.Tag.ToString();
+            Size = new Size(Image.Width + 60, Image.Height + 95);
+            Text = Image.Tag.ToString();
             MaximumSize = Size;
             MinimumSize = Size;
-            gbImage.Size = new Size(Suppression.image.Width + 26, Suppression.image.Height + 32);
+            gbImage.Size = new Size(Image.Width + 26, Image.Height + 32);
             pbImage.BackColor = Color.FromArgb(40, 50, 50);
-            pbImage.Size = Suppression.image.Size;
-            pbImage.Image = Suppression.image;
+            pbImage.Size = Image.Size;
+            pbImage.Image = Image;
         }
     }
 }

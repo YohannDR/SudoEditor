@@ -26,3 +26,9 @@ H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.Suppression.resources
 H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.FrmHeader.resources
 E:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.FrmHeader.resources
 H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.csproj.AssemblyReference.cache
+H:\SudoEngine\SudoEditor\SudoEditor\bin\Debug\DiscordRPC.dll
+H:\SudoEngine\SudoEditor\SudoEditor\bin\Debug\Newtonsoft.Json.dll
+H:\SudoEngine\SudoEditor\SudoEditor\bin\Debug\DiscordRPC.pdb
+H:\SudoEngine\SudoEditor\SudoEditor\bin\Debug\DiscordRPC.xml
+H:\SudoEngine\SudoEditor\SudoEditor\bin\Debug\Newtonsoft.Json.xml
+H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.csproj.CopyComplete

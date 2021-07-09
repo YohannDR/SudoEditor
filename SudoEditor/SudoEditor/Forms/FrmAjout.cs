@@ -41,7 +41,7 @@ namespace SudoEditor
         {
             if (tbNomZ.Text == "")
             {
-                MessageBox.Show("Aucun nom de zone n'a été fourni", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Aucun nom de zone n'a été fourni", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 return;
             }
 
@@ -49,7 +49,7 @@ namespace SudoEditor
             {
                 if (tbNomZ.Text == area.Nom)
                 {
-                    MessageBox.Show("Une zone avec ce nom existe déjà", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                    MessageBox.Show("Une zone avec ce nom existe déjà", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                     return;
                 }
             }
@@ -60,7 +60,7 @@ namespace SudoEditor
             }
             catch
             {
-                MessageBox.Show("Le nom n'est pas un nom valable pour un dossier/fichier windows", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Le nom n'est pas un nom valable pour un dossier/fichier windows", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 return;
             }
             MessageBox.Show($"Le zone {tbNomZ.Text} a été ajoutée avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
@@ -107,7 +107,7 @@ namespace SudoEditor
             }
             catch
             {
-                MessageBox.Show("Le numéro de tileset n'est pas valide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Le numéro de tileset n'est pas valide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 tbNumT.Text = "";
             }
         }
@@ -129,8 +129,8 @@ namespace SudoEditor
 
         private void btnImageFullT_Click(object sender, EventArgs e)
         {
-            Suppression.image = Image.FromStream(new MemoryStream(File.ReadAllBytes(tbImageT.Text)));
-            Suppression.image.Tag = $"Tileset {tbNumT.Text}";
+            ImageView.Image = Image.FromStream(new MemoryStream(File.ReadAllBytes(tbImageT.Text)));
+            ImageView.Image.Tag = $"Tileset {tbNumT.Text}";
             ImageView img = new ImageView();
             img.Show();
         }
@@ -175,8 +175,8 @@ namespace SudoEditor
 
         private void btnImageFullB_Click(object sender, EventArgs e)
         {
-            Suppression.image = Image.FromStream(new MemoryStream(File.ReadAllBytes(tbImageB.Text)));
-            Suppression.image.Tag = $"Background {tbNumB.Text}";
+            ImageView.Image = Image.FromStream(new MemoryStream(File.ReadAllBytes(tbImageB.Text)));
+            ImageView.Image.Tag = $"Background {tbNumB.Text}";
             ImageView img = new ImageView();
             img.Show();
         }
@@ -194,7 +194,7 @@ namespace SudoEditor
             }
             catch
             {
-                MessageBox.Show("Le numéro de background n'est pas valide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Le numéro de background n'est pas valide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand);//, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 tbNumB.Text = "";
             }
         }

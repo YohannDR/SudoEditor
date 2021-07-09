@@ -22,14 +22,18 @@ namespace SudoEditor
             tbMapY.Text = room.Header.MapY.ToString();
             tbMusic.Text = room.Header.MusicNbr.ToString();
             btnAppliquer.Enabled = false;
+            foreach (Area area in Area.Areas) cbZone.Items.Add(area.Nom);
+            cbZone.SelectedIndex = room.AreaID;
+            UpdateCBSalle();
+            cbSalle.SelectedIndex = room.ID;
         }
 
         private void btnAfficherT_Click(object sender, EventArgs e)
         {
             try
             {
-                Suppression.image = SudoEditor.Tilesets[int.Parse(tbTileset.Text)];
-                Suppression.image.Tag = $"Tileset {tbTileset.Text}";
+                ImageView.Image = SudoEditor.Tilesets[int.Parse(tbTileset.Text)];
+                ImageView.Image.Tag = $"Tileset {tbTileset.Text}";
                 ImageView image = new ImageView();
                 image.Show();
             }
@@ -47,8 +51,8 @@ namespace SudoEditor
         {
             try
             {
-                Suppression.image = SudoEditor.Backgrounds[int.Parse(tbBG0.Text)];
-                Suppression.image.Tag = $"Background {tbBG0.Text}";
+                ImageView.Image = SudoEditor.Backgrounds[int.Parse(tbBG0.Text)];
+                ImageView.Image.Tag = $"Background {tbBG0.Text}";
                 ImageView image = new ImageView();
                 image.Show();
             }
@@ -66,24 +70,12 @@ namespace SudoEditor
         {
             btnAfficherT.Enabled = tbTileset.Text != "";
             btnAppliquer.Enabled = true;
-            try
-            {
-                if (tbTileset.Text == "") { lblFoundT.Text = "✗"; return; }
-                if (SudoEditor.Tilesets[int.Parse(tbTileset.Text)] != null) lblFoundT.Text = "✓";
-            }
-            catch { lblFoundT.Text = "✗"; }
         }
 
         private void tbBG0_TextChanged(object sender, EventArgs e)
         {
             btnAfficherB.Enabled = tbBG0.Text != "";
             btnAppliquer.Enabled = true;
-            try
-            {
-                if (tbBG0.Text == "") { lblFoundB.Text = "✗"; return; }
-                if (SudoEditor.Backgrounds[int.Parse(tbBG0.Text)] != null) lblFoundB.Text = "✓";
-            }
-            catch { lblFoundB.Text = "✗"; }
         }
 
         private void btnAppliquer_Click(object sender, EventArgs e)
@@ -127,38 +119,30 @@ namespace SudoEditor
                 MessageBox.Show("La donnée fournie pour la transparence est invalide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 return;
             }
-            room.Header.TilesetNbr = int.Parse(tbTileset.Text);
-            room.Header.BG0Nbr = int.Parse(tbBG0.Text);
-            room.Header.Transparency = double.Parse(tbTransparency.Text);
-            room.Header.MapX = int.Parse(tbMapX.Text);
-            room.Header.MapY = int.Parse(tbMapY.Text);
-            room.Header.MusicNbr = int.Parse(tbMusic.Text);
+            Header h = room.Header;
+            h.TilesetNbr = int.Parse(tbTileset.Text);
+            h.BG0Nbr = int.Parse(tbBG0.Text);
+            h.Transparency = double.Parse(tbTransparency.Text);
+            h.MapX = int.Parse(tbMapX.Text);
+            h.MapY = int.Parse(tbMapY.Text);
+            h.MusicNbr = int.Parse(tbMusic.Text);
+            room.Header = h;
             SudoEditor.CurrentRoom = room;
             SudoEditor.UpdateRoom();
         }
 
-        private void tbTransparency_TextChanged(object sender, EventArgs e)
+        private void tbTransparency_TextChanged(object sender, EventArgs e) => btnAppliquer.Enabled = true;
+
+        private void tbMusic_TextChanged(object sender, EventArgs e) => btnAppliquer.Enabled = true;
+
+        private void tbMapX_TextChanged(object sender, EventArgs e) => btnAppliquer.Enabled = true;
+
+        private void tbMapY_TextChanged(object sender, EventArgs e) => btnAppliquer.Enabled = true;
+
+        void UpdateCBSalle()
         {
-
-            btnAppliquer.Enabled = true;
-        }
-
-        private void tbMusic_TextChanged(object sender, EventArgs e)
-        {
-
-            btnAppliquer.Enabled = true;
-        }
-
-        private void tbMapX_TextChanged(object sender, EventArgs e)
-        {
-
-            btnAppliquer.Enabled = true;
-        }
-
-        private void tbMapY_TextChanged(object sender, EventArgs e)
-        {
-
-            btnAppliquer.Enabled = true;
+            cbSalle.Items.Clear();
+            for (int i = 0; i < Area.Areas[cbZone.SelectedIndex].Rooms.Count; i++) cbSalle.Items.Add(i);
         }
     }
 }
