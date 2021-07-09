@@ -101,16 +101,16 @@ namespace SudoEditor
                 return;
             Pivot = TileCursor;
             Selection = new Rectangle(Pivot.X, Pivot.Y, 1, 1);
-            Rectangle rectangle = new Rectangle(Pivot.X * 16, Pivot.Y * 16, 16, 16);
+            Rectangle rectangle = new Rectangle(Pivot.X * 32, Pivot.Y * 32, 32, 32);
             Tileset.ResizeSelection(Selection);
             Tileset.Invalidate(rectangle);
         }
         
         void Tileset_MouseMove(object sender, MouseEventArgs e)
         {
-            int x = e.X >> 4;
-            int y = e.Y >> 4;
-            if (x == TileCursor.X && y == TileCursor.Y || (x < 0 || x >= 16) || (y < 0 || y >= Tileset.Height / 16))
+            int x = e.X >> 5;
+            int y = e.Y >> 5;
+            if (x == TileCursor.X && y == TileCursor.Y || (x < 0 || x >= 8) || (y < 0 || y >= Tileset.Height / 32))
                 return;
             TileCursor.X = x;
             TileCursor.Y = y;

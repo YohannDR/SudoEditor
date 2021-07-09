@@ -41,12 +41,12 @@ namespace SudoEditor
         
         public void Reset()
         {
-            RedRect = new Rectangle(-1, -1, 15, 15);
-            SelRect = new Rectangle(-1, -1, 15, 15);
+            RedRect = new Rectangle(-1, -1, 31, 31);
+            SelRect = new Rectangle(-1, -1, 31, 31);
         }
-        public void MoveRed(int x, int y) => RedRect = new Rectangle(x << 4, y << 4, 15, 15);
+        public void MoveRed(int x, int y) => RedRect = new Rectangle(x << 5, y << 5, 31, 31);
 
-        public void ResizeSelection(Rectangle rect) => SelRect = new Rectangle(rect.X << 4, rect.Y << 4, (rect.Width << 4) - 1, (rect.Height << 4) - 1);
+        public void ResizeSelection(Rectangle rect) => SelRect = new Rectangle(rect.X << 5, rect.Y << 5, (rect.Width << 5) - 1, (rect.Height << 5) - 1);
 
         protected override void OnPaint(PaintEventArgs e)
         {
