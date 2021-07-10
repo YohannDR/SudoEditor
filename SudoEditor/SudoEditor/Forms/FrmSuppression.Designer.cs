@@ -1,7 +1,7 @@
 ﻿
 namespace SudoEditor
 {
-    partial class Suppression
+    partial class FrmSuppression
     {
         /// <summary>
         /// Required designer variable.

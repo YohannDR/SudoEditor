@@ -18,11 +18,9 @@ E:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.csproj.CoreCompileInput
 E:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.exe
 E:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.pdb
 E:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.Ajout.resources
-H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.Ajout.resources
 E:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.Suppression.resources
 E:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.ImageView.resources
 H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.ImageView.resources
-H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.Suppression.resources
 H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.FrmHeader.resources
 E:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.FrmHeader.resources
 H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.csproj.AssemblyReference.cache
@@ -32,3 +30,5 @@ H:\SudoEngine\SudoEditor\SudoEditor\bin\Debug\DiscordRPC.pdb
 H:\SudoEngine\SudoEditor\SudoEditor\bin\Debug\DiscordRPC.xml
 H:\SudoEngine\SudoEditor\SudoEditor\bin\Debug\Newtonsoft.Json.xml
 H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.csproj.CopyComplete
+H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.FrmAjout.resources
+H:\SudoEngine\SudoEditor\SudoEditor\obj\Debug\SudoEditor.FrmSuppression.resources

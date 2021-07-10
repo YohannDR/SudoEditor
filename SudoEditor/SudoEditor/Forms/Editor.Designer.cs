@@ -39,6 +39,8 @@ namespace SudoEditor
             this.MSProjetEnregistrerSous = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MSProjetFermer = new System.Windows.Forms.ToolStripMenuItem();
+            this.MSOptions = new System.Windows.Forms.ToolStripMenuItem();
+            this.MSOptionsDiscord = new System.Windows.Forms.ToolStripMenuItem();
             this.gbEmplacement = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -74,8 +76,15 @@ namespace SudoEditor
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.TSClip = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.MSOptions = new System.Windows.Forms.ToolStripMenuItem();
-            this.MSOptionsDiscord = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSClipboard = new System.Windows.Forms.ToolStripButton();
+            this.MSVue = new System.Windows.Forms.ToolStripMenuItem();
+            this.MSVueBG0 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MSVueBG1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MSVueBG2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MSVueBG3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MSVueBG4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.MSVueClipboard = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.gbEmplacement.SuspendLayout();
             this.gbVue.SuspendLayout();
@@ -90,6 +99,7 @@ namespace SudoEditor
             this.MenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MSProjet,
+            this.MSVue,
             this.MSOptions});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
@@ -159,6 +169,22 @@ namespace SudoEditor
             this.MSProjetFermer.Size = new System.Drawing.Size(180, 22);
             this.MSProjetFermer.Text = "Fermer";
             this.MSProjetFermer.Click += new System.EventHandler(this.MSProjetFermer_Click);
+            // 
+            // MSOptions
+            // 
+            this.MSOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MSOptionsDiscord});
+            this.MSOptions.Enabled = false;
+            this.MSOptions.Name = "MSOptions";
+            this.MSOptions.Size = new System.Drawing.Size(61, 20);
+            this.MSOptions.Text = "Options";
+            // 
+            // MSOptionsDiscord
+            // 
+            this.MSOptionsDiscord.Name = "MSOptionsDiscord";
+            this.MSOptionsDiscord.Size = new System.Drawing.Size(180, 22);
+            this.MSOptionsDiscord.Text = "Discord Presence";
+            this.MSOptionsDiscord.Click += new System.EventHandler(this.MSOptionsDiscord_Click);
             // 
             // gbEmplacement
             // 
@@ -268,6 +294,7 @@ namespace SudoEditor
             this.cbVueBG0.TabIndex = 4;
             this.cbVueBG0.Text = "BG0";
             this.cbVueBG0.UseVisualStyleBackColor = true;
+            this.cbVueBG0.CheckedChanged += new System.EventHandler(this.cbVueBG0_CheckedChanged);
             // 
             // gbEdit
             // 
@@ -385,6 +412,7 @@ namespace SudoEditor
             this.TSAjouter,
             this.TSSupprimer,
             this.toolStripSeparator6,
+            this.TSClipboard,
             this.TSAide});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
@@ -534,20 +562,77 @@ namespace SudoEditor
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
-            // MSOptions
+            // TSClipboard
             // 
-            this.MSOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MSOptionsDiscord});
-            this.MSOptions.Name = "MSOptions";
-            this.MSOptions.Size = new System.Drawing.Size(61, 20);
-            this.MSOptions.Text = "Options";
+            this.TSClipboard.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TSClipboard.Image = ((System.Drawing.Image)(resources.GetObject("TSClipboard.Image")));
+            this.TSClipboard.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TSClipboard.Name = "TSClipboard";
+            this.TSClipboard.Size = new System.Drawing.Size(24, 24);
+            this.TSClipboard.Text = "Clipboard";
+            this.TSClipboard.Click += new System.EventHandler(this.TSClipboard_Click);
             // 
-            // MSOptionsDiscord
+            // MSVue
             // 
-            this.MSOptionsDiscord.Name = "MSOptionsDiscord";
-            this.MSOptionsDiscord.Size = new System.Drawing.Size(180, 22);
-            this.MSOptionsDiscord.Text = "Discord Presence";
-            this.MSOptionsDiscord.Click += new System.EventHandler(this.MSOptionsDiscord_Click);
+            this.MSVue.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MSVueBG0,
+            this.MSVueBG1,
+            this.MSVueBG2,
+            this.MSVueBG3,
+            this.MSVueBG4,
+            this.toolStripSeparator8,
+            this.MSVueClipboard});
+            this.MSVue.Enabled = false;
+            this.MSVue.Name = "MSVue";
+            this.MSVue.Size = new System.Drawing.Size(39, 20);
+            this.MSVue.Text = "Vue";
+            // 
+            // MSVueBG0
+            // 
+            this.MSVueBG0.Name = "MSVueBG0";
+            this.MSVueBG0.Size = new System.Drawing.Size(180, 22);
+            this.MSVueBG0.Text = "BG0";
+            this.MSVueBG0.Click += new System.EventHandler(this.MSVueBG0_Click);
+            // 
+            // MSVueBG1
+            // 
+            this.MSVueBG1.Name = "MSVueBG1";
+            this.MSVueBG1.Size = new System.Drawing.Size(180, 22);
+            this.MSVueBG1.Text = "BG1";
+            this.MSVueBG1.Click += new System.EventHandler(this.MSVueBG1_Click);
+            // 
+            // MSVueBG2
+            // 
+            this.MSVueBG2.Name = "MSVueBG2";
+            this.MSVueBG2.Size = new System.Drawing.Size(180, 22);
+            this.MSVueBG2.Text = "BG2";
+            this.MSVueBG2.Click += new System.EventHandler(this.MSVueBG2_Click);
+            // 
+            // MSVueBG3
+            // 
+            this.MSVueBG3.Name = "MSVueBG3";
+            this.MSVueBG3.Size = new System.Drawing.Size(180, 22);
+            this.MSVueBG3.Text = "BG3";
+            this.MSVueBG3.Click += new System.EventHandler(this.MSVueBG3_Click);
+            // 
+            // MSVueBG4
+            // 
+            this.MSVueBG4.Name = "MSVueBG4";
+            this.MSVueBG4.Size = new System.Drawing.Size(180, 22);
+            this.MSVueBG4.Text = "BG4";
+            this.MSVueBG4.Click += new System.EventHandler(this.MSVueBG4_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(177, 6);
+            // 
+            // MSVueClipboard
+            // 
+            this.MSVueClipboard.Name = "MSVueClipboard";
+            this.MSVueClipboard.Size = new System.Drawing.Size(180, 22);
+            this.MSVueClipboard.Text = "Clipboard";
+            this.MSVueClipboard.Click += new System.EventHandler(this.MSVueClipboard_Click);
             // 
             // SudoEditor
             // 
@@ -571,7 +656,6 @@ namespace SudoEditor
             this.Load += new System.EventHandler(this.SudoEditor_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.SudoEditor_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.SudoEditor_DragEnter);
-            this.Resize += new System.EventHandler(this.SudoEditor_Resize);
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
             this.gbEmplacement.ResumeLayout(false);
@@ -638,6 +722,15 @@ namespace SudoEditor
         private System.Windows.Forms.ToolStripButton TSHeader;
         private System.Windows.Forms.ToolStripMenuItem MSOptions;
         private System.Windows.Forms.ToolStripMenuItem MSOptionsDiscord;
+        private System.Windows.Forms.ToolStripButton TSClipboard;
+        private System.Windows.Forms.ToolStripMenuItem MSVue;
+        private System.Windows.Forms.ToolStripMenuItem MSVueBG0;
+        private System.Windows.Forms.ToolStripMenuItem MSVueBG1;
+        private System.Windows.Forms.ToolStripMenuItem MSVueBG2;
+        private System.Windows.Forms.ToolStripMenuItem MSVueBG3;
+        private System.Windows.Forms.ToolStripMenuItem MSVueBG4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem MSVueClipboard;
     }
 }
 

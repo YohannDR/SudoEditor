@@ -1,7 +1,7 @@
 ﻿
 namespace SudoEditor
 {
-    partial class Ajout
+    partial class FrmAjout
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace SudoEditor
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ajout));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAjout));
             this.TAB = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();

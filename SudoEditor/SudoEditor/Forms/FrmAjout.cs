@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace SudoEditor
 {
-    public partial class Ajout : Form
+    public partial class FrmAjout : Form
     {
-        public Ajout()
+        public FrmAjout()
         {
             InitializeComponent();
         }
@@ -41,7 +41,7 @@ namespace SudoEditor
         {
             if (tbNomZ.Text == "")
             {
-                MessageBox.Show("Aucun nom de zone n'a été fourni", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Aucun nom de zone n'a été fourni", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return;
             }
 
@@ -49,7 +49,7 @@ namespace SudoEditor
             {
                 if (tbNomZ.Text == area.Nom)
                 {
-                    MessageBox.Show("Une zone avec ce nom existe déjà", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                    MessageBox.Show("Une zone avec ce nom existe déjà", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     return;
                 }
             }
@@ -60,10 +60,10 @@ namespace SudoEditor
             }
             catch
             {
-                MessageBox.Show("Le nom n'est pas un nom valable pour un dossier/fichier windows", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Le nom n'est pas un nom valable pour un dossier/fichier windows", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return;
             }
-            MessageBox.Show($"Le zone {tbNomZ.Text} a été ajoutée avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            MessageBox.Show($"Le zone {tbNomZ.Text} a été ajoutée avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             tbNomZ.Text = "";
             nudNbrSalles.Value = 1;
             rtbZonesZ.Text = "";
@@ -75,13 +75,13 @@ namespace SudoEditor
         {
             if (!cbCopieS.Checked)
             {
-                Area.Areas[cbZoneS.SelectedIndex].AjouterSalle();
-                MessageBox.Show("La salle a été ajoutée avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                Area.Areas[cbZoneS.SelectedIndex].AddRoom();
+                MessageBox.Show("La salle a été ajoutée avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 SudoEditor.UpdateCBSalle(Area.Areas[cbZoneS.SelectedIndex].Rooms.Count - 1);
             }
             else
             {
-                Area.Areas[cbZoneS.SelectedIndex].AjouterSalle();
+                Area.Areas[cbZoneS.SelectedIndex].AddRoom();
                 File.Delete(Settings.RessourcesPath + "/Areas/" + cbZoneS.Text + "/" + (Area.Areas[cbZoneS.SelectedIndex].Rooms.Count - 1) + ".room");
                 File.Copy(Settings.RessourcesPath + "/Areas/" + cbZoneCopieS.Text + "/" + cbSalleCopieS.Text + ".room", Settings.RessourcesPath + "/Areas/" + cbZoneS.Text + "/" + (Area.Areas[cbZoneS.SelectedIndex].Rooms.Count - 1) + ".room");
             }
@@ -100,14 +100,14 @@ namespace SudoEditor
             {
                 if (int.Parse(tbNumT.Text) < 0) throw new Exception();
                 File.Copy(tbImageT.Text, Settings.RessourcesPath + "/Tilesets/" + tbNumT.Text + ".png");
-                MessageBox.Show("Le tileset à été ajouté avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Le tileset à été ajouté avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 SudoEditor.Tilesets.Add(int.Parse(tbNumT.Text), Image.FromFile(Settings.RessourcesPath + "/Tilesets/" + tbNumT.Text + ".png"));
                 tbImageT.Text = "";
                 tbNumT.Text = "";
             }
             catch
             {
-                MessageBox.Show("Le numéro de tileset n'est pas valide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Le numéro de tileset n'est pas valide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 tbNumT.Text = "";
             }
         }
@@ -187,14 +187,14 @@ namespace SudoEditor
             {
                 if (int.Parse(tbNumB.Text) < 0) throw new Exception();
                 File.Copy(tbImageB.Text, Settings.RessourcesPath + "/Backgrounds/" + tbNumB.Text + ".png");
-                MessageBox.Show("Le background à été ajouté avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Le background à été ajouté avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 SudoEditor.Backgrounds.Add(int.Parse(tbNumB.Text), Image.FromFile(Settings.RessourcesPath + "/Backgrounds/" + tbNumB.Text + ".png"));
                 tbImageB.Text = "";
                 tbNumB.Text = "";
             }
             catch
             {
-                MessageBox.Show("Le numéro de background n'est pas valide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand);//, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Le numéro de background n'est pas valide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 tbNumB.Text = "";
             }
         }

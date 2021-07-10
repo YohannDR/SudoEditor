@@ -58,7 +58,7 @@
     <Compile Include="Forms\FrmAjout.Designer.cs">
       <DependentUpon>FrmAjout.cs</DependentUpon>
     </Compile>
-    <Compile Include="Area.cs" />
+    <Compile Include="Classes\Area.cs" />
     <Compile Include="Forms\Editor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,7 +71,7 @@
     <Compile Include="Forms\FrmHeader.Designer.cs">
       <DependentUpon>FrmHeader.cs</DependentUpon>
     </Compile>
-    <Compile Include="Header.cs" />
+    <Compile Include="Classes\Header.cs" />
     <Compile Include="Forms\ImageView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,13 +79,13 @@
       <DependentUpon>ImageView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Projet.cs" />
+    <Compile Include="Classes\Projet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Room.cs" />
+    <Compile Include="Classes\Room.cs" />
     <Compile Include="RoomViewer.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Settings.cs" />
+    <Compile Include="Classes\Settings.cs" />
     <Compile Include="Forms\FrmSuppression.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace SudoEditor
 {
-    public partial class Suppression : Form
+    public partial class FrmSuppression : Form
     {
-        public Suppression()
+        public FrmSuppression()
         {
             InitializeComponent();
         }
@@ -52,7 +52,7 @@ namespace SudoEditor
                     lvZonesZ.Items.Add(ligne);
                 }
                 SudoEditor.UpdateCBZone(0);
-                MessageBox.Show("La zone à été supprimée", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("La zone à été supprimée", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -76,7 +76,7 @@ namespace SudoEditor
                 cbSalleS.Items.Clear();
                 for (int i = 0; i < Area.Areas[cbZoneS.SelectedIndex].Rooms.Count; i++) cbSalleS.Items.Add(i);
                 cbSalleS.SelectedIndex = 0;
-                MessageBox.Show("La salle à été supprimée", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("La salle à été supprimée", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -96,7 +96,7 @@ namespace SudoEditor
 
         private void btnSupprimerT_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show($"Vous vous apprêtez à supprimer le tileset numéro {cbNumT.Text}, êtes vous vraiment sur de vouloir faire ça ?", "Attention", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            DialogResult result = MessageBox.Show($"Vous vous apprêtez à supprimer le tileset numéro {cbNumT.Text}, êtes vous vraiment sur de vouloir faire ça ?", "Attention", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
 
             if (result == DialogResult.Yes)
             {
@@ -113,7 +113,7 @@ namespace SudoEditor
                 foreach (int id in SudoEditor.Tilesets.Keys) cbNumT.Items.Add(id);
                 pbPreviewT.Image = null;
                 btnImageFullT.Enabled = false;
-                MessageBox.Show("Le tileset à été supprimé", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Le tileset à été supprimé", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

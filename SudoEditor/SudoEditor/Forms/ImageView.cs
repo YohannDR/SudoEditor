@@ -19,7 +19,8 @@ namespace SudoEditor
             Text = Image.Tag.ToString();
             MaximumSize = Size;
             MinimumSize = Size;
-            gbImage.Size = new Size(Image.Width + 26, Image.Height + 32);
+            if (Image.Width > 50) gbImage.Size = new Size(Image.Width + 26, Image.Height + 32);
+            else gbImage.Size = new Size(50, Image.Height + 32);
             pbImage.BackColor = Color.FromArgb(40, 50, 50);
             pbImage.Size = Image.Size;
             pbImage.Image = Image;

@@ -19,11 +19,13 @@ namespace SudoEditor
             InitializeComponent();
         }
 
-        static DiscordRpcClient Client = new DiscordRpcClient("424087019149328395");
+        private static readonly DiscordRpcClient Client = new DiscordRpcClient("424087019149328395");
 
-        Point Pivot = new Point(-1, -1);
-        Point TileCursor = new Point(-1, -1);
-        Rectangle Selection = new Rectangle(-1, -1, 1, 1);
+        private Point Pivot = new Point(-1, -1);
+        private Point TileCursor = new Point(-1, -1);
+        private Rectangle Selection = new Rectangle(-1, -1, 1, 1);
+
+        private Bitmap SelectionImage;
 
         public static TileViewer Tileset = new TileViewer();
         public static RoomViewer RoomV = new RoomViewer();
@@ -37,8 +39,8 @@ namespace SudoEditor
         public static GroupBox gbTileset;
 
 
-        bool TileMode = true;
-        bool ObjectMode = false;
+        private bool TileMode = true;
+        private bool ObjectMode = false;
 
         public static List<string> Clipdatas = new List<string>();
         public static List<int> Musics = new List<int>();
@@ -47,7 +49,7 @@ namespace SudoEditor
 
         public static readonly List<CheckBox> CBEdit = new List<CheckBox>();
 
-        void EnableUI()
+        private void EnableUI()
         {
             gbEmplacement.Visible = true;
             gbVue.Visible = true;
@@ -59,6 +61,13 @@ namespace SudoEditor
             MSProjetEnregistrer.Enabled = true;
             MSProjetEnregistrerSous.Enabled = true;
             MSProjetFermer.Enabled = true;
+            MSVue.Enabled = true;
+            MSVueBG0.Checked = true;
+            MSVueBG1.Checked = true;
+            MSVueBG2.Checked = true;
+            MSVueBG3.Checked = true;
+            MSVueBG4.Checked = true;
+            MSOptions.Enabled = true;
 
             TSEnregistrer.Enabled = true;
             TSEnregistrerSous.Enabled = true;
@@ -68,17 +77,7 @@ namespace SudoEditor
             TSHeader.Enabled = true;
             TSAjouter.Enabled = true;
             TSSupprimer.Enabled = true;
-
-            Controls.Add(Tileset);
-            Tileset.BringToFront();
-            gbTileset.Controls.Add(Tileset);
-            Tileset.Location = new Point(15, 20);
-            Tileset.BackgroundImage = Tilesets[0];
-            //Tileset.BackgroundImage = Tilesets[CurrentRoom.Header.TilesetNbr];
-            Tileset.MouseDown += new MouseEventHandler(Tileset_MouseDown);
-            Tileset.MouseMove += new MouseEventHandler(Tileset_MouseMove);
-            Tileset.MouseUp += new MouseEventHandler(Tileset_MouseUp);
-            gbTileset.Size = new Size(gbTileset.Width, Tileset.BackgroundImage.Height + 35);
+            TSClipboard.Enabled = true;
 
             int a = 0;
             foreach (string clip in Clipdatas) { cbCollission.Items.Add($"{a} - {clip}"); a++; }
@@ -89,9 +88,21 @@ namespace SudoEditor
             cbCollission.SelectedIndex = 0;
             
             CurrentRoom = Area.Areas[0].Rooms[0];
+
+            Controls.Add(Tileset);
+            Tileset.BringToFront();
+            gbTileset.Controls.Add(Tileset);
+            Tileset.Location = new Point(15, 20);
+            //Tileset.BackgroundImage = Tilesets[0];
+            Tileset.BackgroundImage = Tilesets[CurrentRoom.Header.TilesetNbr];
+            Tileset.MouseDown += new MouseEventHandler(Tileset_MouseDown);
+            Tileset.MouseMove += new MouseEventHandler(Tileset_MouseMove);
+            Tileset.MouseUp += new MouseEventHandler(Tileset_MouseUp);
+            gbTileset.Size = new Size(gbTileset.Width, Tileset.BackgroundImage.Height + 35);
         }
 
-        void Tileset_MouseDown(object sender, MouseEventArgs e)
+        #region Tileset Events
+        private void Tileset_MouseDown(object sender, MouseEventArgs e)
         {
             Rectangle SelRect = Tileset.SelRect;
             Tileset.ResizeSelection(new Rectangle(1, 1, 1, 1));
@@ -104,9 +115,11 @@ namespace SudoEditor
             Rectangle rectangle = new Rectangle(Pivot.X * 32, Pivot.Y * 32, 32, 32);
             Tileset.ResizeSelection(Selection);
             Tileset.Invalidate(rectangle);
+            TSSize.Text = $"1 x 1";
         }
-        
-        void Tileset_MouseMove(object sender, MouseEventArgs e)
+
+
+        private void Tileset_MouseMove(object sender, MouseEventArgs e)
         {
             int x = e.X >> 5;
             int y = e.Y >> 5;
@@ -122,6 +135,7 @@ namespace SudoEditor
                 Tileset.ResizeSelection(Selection);
                 Tileset.MoveRed(x, y);
                 Tileset.Invalidate(Union(selRect, Tileset.SelRect));
+                TSSize.Text = $"{Tileset.SelRect.Width / 32 + 1} x {Tileset.SelRect.Height / 32 + 1}";
             }
             else
             {
@@ -130,12 +144,17 @@ namespace SudoEditor
                 Tileset.Invalidate(Union(RedRect, Tileset.RedRect));
             }
         }
-        void Tileset_MouseUp(object sender, MouseEventArgs e)
+
+        private void Tileset_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left && e.Button != MouseButtons.Right || !Tileset.HasSelection)
                 return;
             Pivot = new Point(-1, -1);
+            SelectionImage = new Bitmap(Tileset.SelRect.Width, Tileset.SelRect.Height);
+            CopyBlocks();
         }
+
+        #endregion
 
         public Rectangle Union(Rectangle rect1, Rectangle rect2)
         {
@@ -145,14 +164,41 @@ namespace SudoEditor
             int height = Math.Max(rect1.Y + rect1.Height, rect2.Y + rect2.Height) - y + 1;
             return new Rectangle(x, y, width, height);
         }
-        void ResizeSelection(Point pos)
+
+        public void CopyBlocks()
+        {
+            /*if (Tileset.HasSelection)
+            {
+                Bitmap image = new Bitmap(Tileset.BackgroundImage);
+                for (int x = 0; x < Tileset.SelRect.Width / 32; x++)
+                {
+                    for (int y = 0; y < Tileset.SelRect.Height / 32; y++) 
+                    {
+                        for (int a = 0; a < 32; a++)
+                        {
+                            for (int b = 0; b < 32; b++)
+                            {
+                                try { SelectionImage.SetPixel(y * 32 + a, x * 32 + b, image.GetPixel(Tileset.SelRect.X + a, Tileset.SelRect.Y + b)); }
+                                catch { }
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                //Tiles depuis le roomView
+            }*/
+        }
+
+        private void ResizeSelection(Point pos)
         {
             int width = Math.Abs(pos.X - Pivot.X) + 1;
             int height = Math.Abs(pos.Y - Pivot.Y) + 1;
             Selection = new Rectangle(pos.X >= Pivot.X ? Pivot.X : pos.X, pos.Y >= Pivot.Y ? Pivot.Y : pos.Y, width, height);
         }
 
-        void DisbaleUI()
+        private void DisbaleUI()
         {
             gbEmplacement.Visible = false;
             gbVue.Visible = false;
@@ -164,6 +210,8 @@ namespace SudoEditor
             MSProjetEnregistrer.Enabled = false;
             MSProjetEnregistrerSous.Enabled = false;
             MSProjetFermer.Enabled = false;
+            MSVue.Enabled = false;
+            MSOptions.Enabled = true;
 
             TSEnregistrer.Enabled = false;
             TSEnregistrerSous.Enabled = false;
@@ -174,13 +222,14 @@ namespace SudoEditor
             TSHeader.Enabled = false;
             TSAjouter.Enabled = false;
             TSSupprimer.Enabled = false;
+            TSClipboard.Enabled = false;
 
             cbZone.Items.Clear();
             cbSalle.Items.Clear();
             cbCollission.Items.Clear();
         }
 
-        void ChangeMode()
+        private void ChangeMode()
         {
             TileMode = !TileMode;
             ObjectMode = !ObjectMode;
@@ -224,7 +273,7 @@ namespace SudoEditor
             if (set != -1) cbZone.SelectedIndex = set;
         }
 
-        void FlushCBEdit(CheckBox cb)
+        private void FlushCBEdit(CheckBox cb)
         {
             if (!cb.Checked) return;
             foreach (CheckBox CB in CBEdit)
@@ -250,9 +299,9 @@ namespace SudoEditor
         private void SudoEditor_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            if (files.Length != 1) { MessageBox.Show("Veuillez drop un seul fichier à la fois", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly); return; }
+            if (files.Length != 1) { MessageBox.Show("Veuillez drop un seul fichier à la fois", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand); return; }
             string file = files[0];
-            if (file.Substring(file.Length - 3, 3) != ".gp") { MessageBox.Show("Veuillez drop un ficheir .gp", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly); return; }
+            if (file.Substring(file.Length - 3, 3) != ".gp") { MessageBox.Show("Veuillez drop un ficheir .gp", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand); return; }
             DisbaleUI();
             string[] path = file.Split("\\".ToCharArray()[0]);
             string absolutePath = path[0];
@@ -338,24 +387,28 @@ namespace SudoEditor
         private void cbVueBG1_CheckedChanged(object sender, EventArgs e)
         {
             cbEditBG1.Checked = false;
+            MSVueBG1.Checked = cbVueBG1.Checked;
             if (TileMode) cbEditBG1.Enabled = cbVueBG1.Checked;
         }
 
         private void cbVueBG2_CheckedChanged(object sender, EventArgs e)
         {
             cbEditBG2.Checked = false;
+            MSVueBG2.Checked = cbVueBG2.Checked;
             if (TileMode) cbEditBG2.Enabled = cbVueBG2.Checked;
         }
 
         private void cbVueBG3_CheckedChanged(object sender, EventArgs e)
         {
             cbEditBG3.Checked = false;
+            MSVueBG3.Checked = cbVueBG3.Checked;
             if (TileMode) cbEditBG3.Enabled = cbVueBG3.Checked;
         }
 
         private void cbVueBG4_CheckedChanged(object sender, EventArgs e)
         {
             cbEditBG4.Checked = false;
+            MSVueBG4.Checked = cbVueBG4.Checked;
             if (TileMode) cbEditBG4.Enabled = cbVueBG4.Checked;
         }
 
@@ -432,34 +485,16 @@ namespace SudoEditor
             UpdateCBSalle(0);
         }
 
-        private void TSAjouter_Click(object sender, EventArgs e)
-        {
-            Ajout ajout = new Ajout();
-            ajout.Show();
-        }
+        private void TSAjouter_Click(object sender, EventArgs e) => new FrmAjout().Show();
 
-        private void TSSupprimer_Click(object sender, EventArgs e)
-        {
-            Suppression suppr = new Suppression();
-            suppr.Show();
-        }
+        private void TSSupprimer_Click(object sender, EventArgs e) => new FrmSuppression().Show();
 
         private void TSAide_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Voulez vous ouvrir le document d'aide ?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes) Console.WriteLine("");
+            if (MessageBox.Show("Voulez vous ouvrir le document d'aide ?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) Console.WriteLine("");
         }
 
-        private void SudoEditor_Resize(object sender, EventArgs e)
-        {
-            Refresh();
-        }
-
-        private void TSHeader_Click(object sender, EventArgs e)
-        {
-            FrmHeader frm = new FrmHeader();
-            frm.Show();
-        }
+        private void TSHeader_Click(object sender, EventArgs e) => new FrmHeader().Show();
 
         private void cbSalle_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -498,6 +533,52 @@ namespace SudoEditor
         {
             Settings.DiscordRPC = !Settings.DiscordRPC;
             MSOptions.Checked = Settings.DiscordRPC;
+        }
+
+        private void TSClipboard_Click(object sender, EventArgs e)
+        {
+            if (SelectionImage != null) ImageView.Image = SelectionImage;
+            else ImageView.Image = new Bitmap(1, 1);
+            ImageView.Image.Tag = "Clipboard";
+            ImageView image = new ImageView();
+            image.Show();
+        }
+
+        private void MSVueClipboard_Click(object sender, EventArgs e) => TSClipboard_Click(1, new EventArgs());
+
+        private void cbVueBG0_CheckedChanged(object sender, EventArgs e)
+        {
+            MSVueBG0.Checked = cbVueBG0.Checked;
+        }
+
+        private void MSVueBG0_Click(object sender, EventArgs e)
+        {
+            MSVueBG0.Checked = !MSVueBG0.Checked;
+            cbVueBG0.Checked = MSVueBG0.Checked;
+        }
+
+        private void MSVueBG1_Click(object sender, EventArgs e)
+        {
+            MSVueBG1.Checked = !MSVueBG1.Checked;
+            cbVueBG1.Checked = MSVueBG1.Checked;
+        }
+
+        private void MSVueBG2_Click(object sender, EventArgs e)
+        {
+            MSVueBG2.Checked = !MSVueBG2.Checked;
+            cbVueBG2.Checked = MSVueBG2.Checked;
+        }
+
+        private void MSVueBG3_Click(object sender, EventArgs e)
+        {
+            MSVueBG3.Checked = !MSVueBG3.Checked;
+            cbVueBG3.Checked = MSVueBG3.Checked;
+        }
+
+        private void MSVueBG4_Click(object sender, EventArgs e)
+        {
+            MSVueBG4.Checked = !MSVueBG4.Checked;
+            cbVueBG4.Checked = MSVueBG4.Checked;
         }
     }
 }

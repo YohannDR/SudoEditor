@@ -12,3 +12,9 @@ H:\SudoEngine\SudoEditor\SudoEditor\obj\Release\SudoEditor.csproj.GenerateResour
 H:\SudoEngine\SudoEditor\SudoEditor\obj\Release\SudoEditor.csproj.CoreCompileInputs.cache
 H:\SudoEngine\SudoEditor\SudoEditor\obj\Release\SudoEditor.exe
 H:\SudoEngine\SudoEditor\SudoEditor\obj\Release\SudoEditor.pdb
+H:\SudoEngine\SudoEditor\SudoEditor\bin\Release\DiscordRPC.dll
+H:\SudoEngine\SudoEditor\SudoEditor\bin\Release\Newtonsoft.Json.dll
+H:\SudoEngine\SudoEditor\SudoEditor\bin\Release\DiscordRPC.pdb
+H:\SudoEngine\SudoEditor\SudoEditor\bin\Release\DiscordRPC.xml
+H:\SudoEngine\SudoEditor\SudoEditor\bin\Release\Newtonsoft.Json.xml
+H:\SudoEngine\SudoEditor\SudoEditor\obj\Release\SudoEditor.csproj.CopyComplete

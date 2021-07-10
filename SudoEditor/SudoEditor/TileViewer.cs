@@ -24,12 +24,12 @@ namespace SudoEditor
         public bool HasSelection => SelRect.X != -1;
 
         public Rectangle RedRect { get; set; }
-        Pen RedPen { get; set; } = new Pen(Color.Red, 1);
+        private Pen RedPen { get; set; } = new Pen(Color.Red, 1);
 
         public Rectangle SelRect { get; set; }
-        Pen WhitePen { get; set; } = new Pen(Color.White, 1);
+        private Pen WhitePen { get; set; } = new Pen(Color.White, 1);
 
-        Pen BlackPen { get; set; } = new Pen(Color.Black, 1);
+        private Pen BlackPen { get; set; } = new Pen(Color.Black, 1);
 
         public TileViewer()
         {

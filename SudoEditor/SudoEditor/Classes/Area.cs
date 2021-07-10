@@ -28,7 +28,7 @@ namespace SudoEditor
             }
         }
 
-        public void AjouterSalle()
+        public void AddRoom()
         {
             Rooms.Add(new Room(true, Rooms.Count, ID));
         }

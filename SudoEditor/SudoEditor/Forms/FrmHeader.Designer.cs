@@ -51,9 +51,19 @@ namespace SudoEditor
             this.label8 = new System.Windows.Forms.Label();
             this.cbZone = new System.Windows.Forms.ComboBox();
             this.cbSalle = new System.Windows.Forms.ComboBox();
+            this.btnFermer = new System.Windows.Forms.Button();
+            this.gbScroll = new System.Windows.Forms.GroupBox();
+            this.tbScrollY = new System.Windows.Forms.TextBox();
+            this.tbScrollX = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.SSChanges = new System.Windows.Forms.StatusStrip();
+            this.TSSSChanges = new System.Windows.Forms.ToolStripStatusLabel();
             this.gbBG.SuspendLayout();
             this.gbMap.SuspendLayout();
             this.gbMusic.SuspendLayout();
+            this.gbScroll.SuspendLayout();
+            this.SSChanges.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbBG
@@ -162,7 +172,7 @@ namespace SudoEditor
             // 
             // tbMapY
             // 
-            this.tbMapY.Location = new System.Drawing.Point(47, 50);
+            this.tbMapY.Location = new System.Drawing.Point(46, 50);
             this.tbMapY.MaxLength = 3;
             this.tbMapY.Name = "tbMapY";
             this.tbMapY.Size = new System.Drawing.Size(27, 20);
@@ -227,12 +237,14 @@ namespace SudoEditor
             // 
             // btnAppliquer
             // 
-            this.btnAppliquer.Location = new System.Drawing.Point(149, 168);
+            this.btnAppliquer.Enabled = false;
+            this.btnAppliquer.Location = new System.Drawing.Point(264, 191);
             this.btnAppliquer.Name = "btnAppliquer";
             this.btnAppliquer.Size = new System.Drawing.Size(63, 23);
             this.btnAppliquer.TabIndex = 9;
             this.btnAppliquer.Text = "&Appliquer";
             this.btnAppliquer.UseVisualStyleBackColor = true;
+            this.btnAppliquer.EnabledChanged += new System.EventHandler(this.btnAppliquer_EnabledChanged);
             this.btnAppliquer.Click += new System.EventHandler(this.btnAppliquer_Click);
             // 
             // label7
@@ -272,12 +284,91 @@ namespace SudoEditor
             this.cbSalle.Name = "cbSalle";
             this.cbSalle.Size = new System.Drawing.Size(60, 21);
             this.cbSalle.TabIndex = 13;
+            this.cbSalle.SelectedIndexChanged += new System.EventHandler(this.cbSalle_SelectedIndexChanged);
+            // 
+            // btnFermer
+            // 
+            this.btnFermer.Location = new System.Drawing.Point(264, 220);
+            this.btnFermer.Name = "btnFermer";
+            this.btnFermer.Size = new System.Drawing.Size(63, 23);
+            this.btnFermer.TabIndex = 14;
+            this.btnFermer.Text = "&Fermer";
+            this.btnFermer.UseVisualStyleBackColor = true;
+            this.btnFermer.Click += new System.EventHandler(this.btnFermer_Click);
+            // 
+            // gbScroll
+            // 
+            this.gbScroll.Controls.Add(this.tbScrollY);
+            this.gbScroll.Controls.Add(this.tbScrollX);
+            this.gbScroll.Controls.Add(this.label9);
+            this.gbScroll.Controls.Add(this.label10);
+            this.gbScroll.Location = new System.Drawing.Point(251, 15);
+            this.gbScroll.Name = "gbScroll";
+            this.gbScroll.Size = new System.Drawing.Size(96, 81);
+            this.gbScroll.TabIndex = 8;
+            this.gbScroll.TabStop = false;
+            this.gbScroll.Text = "Scrolling";
+            // 
+            // tbScrollY
+            // 
+            this.tbScrollY.Location = new System.Drawing.Point(46, 50);
+            this.tbScrollY.MaxLength = 3;
+            this.tbScrollY.Name = "tbScrollY";
+            this.tbScrollY.Size = new System.Drawing.Size(27, 20);
+            this.tbScrollY.TabIndex = 7;
+            this.tbScrollY.TextChanged += new System.EventHandler(this.tbScrollY_TextChanged);
+            // 
+            // tbScrollX
+            // 
+            this.tbScrollX.Location = new System.Drawing.Point(46, 20);
+            this.tbScrollX.MaxLength = 3;
+            this.tbScrollX.Name = "tbScrollX";
+            this.tbScrollX.Size = new System.Drawing.Size(27, 20);
+            this.tbScrollX.TabIndex = 6;
+            this.tbScrollX.TextChanged += new System.EventHandler(this.tbScrollX_TextChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(10, 52);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(20, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Y :";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(10, 19);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(20, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "X :";
+            // 
+            // SSChanges
+            // 
+            this.SSChanges.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TSSSChanges});
+            this.SSChanges.Location = new System.Drawing.Point(0, 253);
+            this.SSChanges.Name = "SSChanges";
+            this.SSChanges.Size = new System.Drawing.Size(347, 22);
+            this.SSChanges.TabIndex = 15;
+            this.SSChanges.Text = "Aucune modification";
+            // 
+            // TSSSChanges
+            // 
+            this.TSSSChanges.Name = "TSSSChanges";
+            this.TSSSChanges.Size = new System.Drawing.Size(119, 17);
+            this.TSSSChanges.Text = "Aucune modification";
             // 
             // FrmHeader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(264, 257);
+            this.ClientSize = new System.Drawing.Size(347, 275);
+            this.Controls.Add(this.SSChanges);
+            this.Controls.Add(this.gbScroll);
+            this.Controls.Add(this.btnFermer);
             this.Controls.Add(this.cbSalle);
             this.Controls.Add(this.cbZone);
             this.Controls.Add(this.label8);
@@ -295,6 +386,10 @@ namespace SudoEditor
             this.gbMap.PerformLayout();
             this.gbMusic.ResumeLayout(false);
             this.gbMusic.PerformLayout();
+            this.gbScroll.ResumeLayout(false);
+            this.gbScroll.PerformLayout();
+            this.SSChanges.ResumeLayout(false);
+            this.SSChanges.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,5 +419,13 @@ namespace SudoEditor
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbZone;
         private System.Windows.Forms.ComboBox cbSalle;
+        private System.Windows.Forms.Button btnFermer;
+        private System.Windows.Forms.GroupBox gbScroll;
+        private System.Windows.Forms.TextBox tbScrollY;
+        private System.Windows.Forms.TextBox tbScrollX;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.StatusStrip SSChanges;
+        private System.Windows.Forms.ToolStripStatusLabel TSSSChanges;
     }
 }
