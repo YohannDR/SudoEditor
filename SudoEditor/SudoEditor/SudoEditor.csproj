@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DiscordRPC, Version=1.0.175.0, Culture=neutral, processorArchitecture=MSIL">
@@ -82,7 +84,7 @@
     <Compile Include="Classes\Projet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Room.cs" />
-    <Compile Include="RoomViewer.cs">
+    <Compile Include="Controls\RoomViewer.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Classes\Settings.cs" />
@@ -92,7 +94,7 @@
     <Compile Include="Forms\FrmSuppression.Designer.cs">
       <DependentUpon>FrmSuppression.cs</DependentUpon>
     </Compile>
-    <Compile Include="TileViewer.cs">
+    <Compile Include="Controls\TileViewer.cs">
       <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="Forms\FrmAjout.resx">

@@ -2,15 +2,16 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace SudoEditor
 {
     public partial class FrmAjout : Form
     {
-        public FrmAjout()
-        {
-            InitializeComponent();
-        }
+        public FrmAjout() => InitializeComponent();
+
+        bool DefaultEvents = true;
 
         private void cbCopieS_CheckedChanged(object sender, EventArgs e)
         {
@@ -35,6 +36,9 @@ namespace SudoEditor
             cbZoneCopieS.SelectedIndex = 0;
             cbSalleCopieS.SelectedIndex = 0;
             foreach (Area area in Area.Areas) rtbZonesZ.Text += $"{area.Nom}\n";
+
+            clbEvents.SetItemChecked(1, true);
+            clbEvents.SetItemChecked(2, true);
         }
 
         private void btnAjoutZ_Click(object sender, EventArgs e)
@@ -84,6 +88,7 @@ namespace SudoEditor
                 Area.Areas[cbZoneS.SelectedIndex].AddRoom();
                 File.Delete(Settings.RessourcesPath + "/Areas/" + cbZoneS.Text + "/" + (Area.Areas[cbZoneS.SelectedIndex].Rooms.Count - 1) + ".room");
                 File.Copy(Settings.RessourcesPath + "/Areas/" + cbZoneCopieS.Text + "/" + cbSalleCopieS.Text + ".room", Settings.RessourcesPath + "/Areas/" + cbZoneS.Text + "/" + (Area.Areas[cbZoneS.SelectedIndex].Rooms.Count - 1) + ".room");
+                MessageBox.Show("La salle a été ajoutée avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -98,17 +103,30 @@ namespace SudoEditor
         {
             try
             {
-                if (int.Parse(tbNumT.Text) < 0) throw new Exception();
+                if (int.Parse(tbNumT.Text) < 0) throw new FormatException();
+
+                Bitmap image = new Bitmap(tbImageT.Text);
+                if (image.Width != 256 || image.Height % 32 != 0) throw new ArgumentException();
+
                 File.Copy(tbImageT.Text, Settings.RessourcesPath + "/Tilesets/" + tbNumT.Text + ".png");
                 MessageBox.Show("Le tileset à été ajouté avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 SudoEditor.Tilesets.Add(int.Parse(tbNumT.Text), Image.FromFile(Settings.RessourcesPath + "/Tilesets/" + tbNumT.Text + ".png"));
                 tbImageT.Text = "";
                 tbNumT.Text = "";
             }
-            catch
+            catch (FormatException)
             {
                 MessageBox.Show("Le numéro de tileset n'est pas valide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 tbNumT.Text = "";
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("Les dimensions du tileset ne sont pas valides, il doit faire 256 de largueur et avoir une hauteur divisible par 32", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                tbImageT.Text = "";
+            }
+            catch (Exception E)
+            {
+                MessageBox.Show($"Une erreur inconnue s'est produite :\n{E.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
 
@@ -208,6 +226,44 @@ namespace SudoEditor
             };
             if (music.ShowDialog() != DialogResult.OK) return;
             tbMusic.Text = music.FileName;
+        }
+
+        private void tbSpriteAjouter_Click(object sender, EventArgs e)
+        {
+            string file = Settings.SpritePath + tbSpriteNom.Text + ".cs";
+            SpriteEvents E;
+            if (DefaultEvents)
+                E = SpriteEvents.Default;
+            else E = new SpriteEvents
+                (clbEvents.GetItemChecked(0), clbEvents.GetItemChecked(1), clbEvents.GetItemChecked(2), clbEvents.GetItemChecked(3), clbEvents.GetItemChecked(4),
+                clbEvents.GetItemChecked(5), clbEvents.GetItemChecked(6), clbEvents.GetItemChecked(7), clbEvents.GetItemChecked(8));
+
+            File.WriteAllText(file, Settings.SpriteDefault(tbSpriteNom.Text, E));
+            if (cbSpriteOuvrir.Checked) Process.Start(file);
+        }
+
+        private void btnSpriteDefault_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < clbEvents.Items.Count; i++) clbEvents.SetItemChecked(i, i == 1 | i == 2 ? true : false);
+            DefaultEvents = true;
+        }
+
+        private void clbEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (clbEvents.CheckedItems.Count != 2) DefaultEvents = false;
+            else DefaultEvents = clbEvents.GetItemChecked(1) & clbEvents.GetItemChecked(2);
+        }
+
+        private void tbSpriteNom_TextChanged(object sender, EventArgs e) => btnSpriteAjouter.Enabled = tbSpriteNom.Text != string.Empty;
+
+        private void btnSpriteTout_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < clbEvents.Items.Count; i++) clbEvents.SetItemChecked(i, true);
+        }
+
+        private void btnSpriteToutD_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < clbEvents.Items.Count; i++) clbEvents.SetItemChecked(i, false);
         }
     }
 }

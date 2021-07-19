@@ -75,6 +75,15 @@ namespace SudoEditor
             this.button4 = new System.Windows.Forms.Button();
             this.tbMusic = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.btnSpriteToutD = new System.Windows.Forms.Button();
+            this.btnSpriteDefault = new System.Windows.Forms.Button();
+            this.clbEvents = new System.Windows.Forms.CheckedListBox();
+            this.cbSpriteOuvrir = new System.Windows.Forms.CheckBox();
+            this.btnSpriteAjouter = new System.Windows.Forms.Button();
+            this.tbSpriteNom = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.btnSpriteTout = new System.Windows.Forms.Button();
             this.TAB.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNbrSalles)).BeginInit();
@@ -83,6 +92,7 @@ namespace SudoEditor
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.SuspendLayout();
             // 
             // TAB
@@ -92,6 +102,7 @@ namespace SudoEditor
             this.TAB.Controls.Add(this.tabPage3);
             this.TAB.Controls.Add(this.tabPage4);
             this.TAB.Controls.Add(this.tabPage5);
+            this.TAB.Controls.Add(this.tabPage6);
             resources.ApplyResources(this.TAB, "TAB");
             this.TAB.Name = "TAB";
             this.TAB.SelectedIndex = 0;
@@ -421,12 +432,93 @@ namespace SudoEditor
             resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
             // 
-            // Ajout
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.btnSpriteTout);
+            this.tabPage6.Controls.Add(this.btnSpriteToutD);
+            this.tabPage6.Controls.Add(this.btnSpriteDefault);
+            this.tabPage6.Controls.Add(this.clbEvents);
+            this.tabPage6.Controls.Add(this.cbSpriteOuvrir);
+            this.tabPage6.Controls.Add(this.btnSpriteAjouter);
+            this.tabPage6.Controls.Add(this.tbSpriteNom);
+            this.tabPage6.Controls.Add(this.label13);
+            resources.ApplyResources(this.tabPage6, "tabPage6");
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // btnSpriteToutD
+            // 
+            resources.ApplyResources(this.btnSpriteToutD, "btnSpriteToutD");
+            this.btnSpriteToutD.Name = "btnSpriteToutD";
+            this.btnSpriteToutD.UseVisualStyleBackColor = true;
+            this.btnSpriteToutD.Click += new System.EventHandler(this.btnSpriteToutD_Click);
+            // 
+            // btnSpriteDefault
+            // 
+            resources.ApplyResources(this.btnSpriteDefault, "btnSpriteDefault");
+            this.btnSpriteDefault.Name = "btnSpriteDefault";
+            this.btnSpriteDefault.UseVisualStyleBackColor = true;
+            this.btnSpriteDefault.Click += new System.EventHandler(this.btnSpriteDefault_Click);
+            // 
+            // clbEvents
+            // 
+            this.clbEvents.CheckOnClick = true;
+            this.clbEvents.FormattingEnabled = true;
+            this.clbEvents.Items.AddRange(new object[] {
+            resources.GetString("clbEvents.Items"),
+            resources.GetString("clbEvents.Items1"),
+            resources.GetString("clbEvents.Items2"),
+            resources.GetString("clbEvents.Items3"),
+            resources.GetString("clbEvents.Items4"),
+            resources.GetString("clbEvents.Items5"),
+            resources.GetString("clbEvents.Items6"),
+            resources.GetString("clbEvents.Items7"),
+            resources.GetString("clbEvents.Items8")});
+            resources.ApplyResources(this.clbEvents, "clbEvents");
+            this.clbEvents.Name = "clbEvents";
+            this.clbEvents.SelectedIndexChanged += new System.EventHandler(this.clbEvents_SelectedIndexChanged);
+            // 
+            // cbSpriteOuvrir
+            // 
+            resources.ApplyResources(this.cbSpriteOuvrir, "cbSpriteOuvrir");
+            this.cbSpriteOuvrir.Checked = true;
+            this.cbSpriteOuvrir.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSpriteOuvrir.Name = "cbSpriteOuvrir";
+            this.cbSpriteOuvrir.UseVisualStyleBackColor = true;
+            // 
+            // btnSpriteAjouter
+            // 
+            this.btnSpriteAjouter.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnSpriteAjouter, "btnSpriteAjouter");
+            this.btnSpriteAjouter.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnSpriteAjouter.Name = "btnSpriteAjouter";
+            this.btnSpriteAjouter.UseVisualStyleBackColor = false;
+            this.btnSpriteAjouter.Click += new System.EventHandler(this.tbSpriteAjouter_Click);
+            // 
+            // tbSpriteNom
+            // 
+            resources.ApplyResources(this.tbSpriteNom, "tbSpriteNom");
+            this.tbSpriteNom.Name = "tbSpriteNom";
+            this.tbSpriteNom.TextChanged += new System.EventHandler(this.tbSpriteNom_TextChanged);
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // btnSpriteTout
+            // 
+            resources.ApplyResources(this.btnSpriteTout, "btnSpriteTout");
+            this.btnSpriteTout.Name = "btnSpriteTout";
+            this.btnSpriteTout.UseVisualStyleBackColor = true;
+            this.btnSpriteTout.Click += new System.EventHandler(this.btnSpriteTout_Click);
+            // 
+            // FrmAjout
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TAB);
-            this.Name = "Ajout";
+            this.Name = "FrmAjout";
             this.Load += new System.EventHandler(this.Ajout_Load);
             this.TAB.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -442,6 +534,8 @@ namespace SudoEditor
             this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -493,5 +587,14 @@ namespace SudoEditor
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox tbMusic;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TextBox tbSpriteNom;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btnSpriteAjouter;
+        private System.Windows.Forms.CheckBox cbSpriteOuvrir;
+        private System.Windows.Forms.Button btnSpriteDefault;
+        private System.Windows.Forms.CheckedListBox clbEvents;
+        private System.Windows.Forms.Button btnSpriteToutD;
+        private System.Windows.Forms.Button btnSpriteTout;
     }
 }

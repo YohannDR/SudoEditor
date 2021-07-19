@@ -32,7 +32,6 @@ namespace SudoEditor
         public static Room CurrentRoom;
 
         public static Projet Projet;
-        public static bool isMouseInTileset;
         public static ComboBox cbZone;
         public static ComboBox cbSalle;
         public static ToolStripLabel TSSize;
@@ -310,6 +309,7 @@ namespace SudoEditor
             Settings.ProjectPath = absolutePath;
             Settings.RessourcesPath = absolutePath + "\\" + path[path.Length - 1].Substring(0, path.Length - 3) + " Ressources";
             Settings.AreaPath = Settings.RessourcesPath + "\\Areas\\";
+            Settings.SpritePath = Settings.RessourcesPath + "\\Sprites\\";
             Projet = new Projet(false);
             Text = $"SudoEditor | {path[path.Length - 1].Substring(0, path.Length - 3)}";
             EnableUI();
@@ -332,6 +332,8 @@ namespace SudoEditor
             Settings.GPFilePath = newProject.FileName;
             Settings.ProjectPath = combinedPath;
             Settings.RessourcesPath = newProject.FileName.Substring(0, newProject.FileName.Length - 3) + " Ressources";
+            Settings.AreaPath = Settings.RessourcesPath + "\\Areas\\";
+            Settings.SpritePath = Settings.RessourcesPath + "\\Sprites\\";
             Projet = new Projet(true);
             gpFile.Close();
             EnableUI();
@@ -355,6 +357,7 @@ namespace SudoEditor
             Settings.ProjectPath = absolutePath;
             Settings.RessourcesPath = absolutePath + "\\" + path[path.Length - 1].Substring(0, path.Length - 3) + " Ressources";
             Settings.AreaPath = Settings.RessourcesPath + "\\Areas\\";
+            Settings.SpritePath = Settings.RessourcesPath + "\\Sprites\\";
             Projet = new Projet(false);
             Text = $"SudoEditor | {path[path.Length - 1].Substring(0, path.Length - 3)}";
             EnableUI();

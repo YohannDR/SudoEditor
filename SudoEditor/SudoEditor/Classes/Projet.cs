@@ -16,6 +16,7 @@ namespace SudoEditor
                 File.Create(Settings.AreaPath + "Zone 0/0.room").Close();
                 Directory.CreateDirectory(Settings.RessourcesPath + "/Tilesets");
                 Directory.CreateDirectory(Settings.RessourcesPath + "/Backgrounds");
+                Directory.CreateDirectory(Settings.RessourcesPath + "/Sprites");
                 File.Create(Settings.RessourcesPath + "/clipdata").Close();
                 StreamWriter clipFile = new StreamWriter(Settings.RessourcesPath + "/clipdata", true, Encoding.ASCII, 3);
                 clipFile.WriteLine("Air");
@@ -54,7 +55,7 @@ namespace SudoEditor
                 foreach (Room room in area.Rooms) room.Save();
             }
         }
-
+        
         public void Dispose()
         {
             SudoEditor.Tilesets.Clear();
